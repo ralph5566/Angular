@@ -1,0 +1,51 @@
+<!-- <header>
+  <img src="assets/angular-logo.png" alt="The Angular logo: The letter 'A'" />
+  <h1>Let's get started!</h1>
+  <p>Time to learn all about Angular!</p>
+</header> -->
+
+<app-header />
+<main>
+  <ul id="users">
+    @for ( user of users; track user.id) {
+    <li>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)"
+      />
+    </li>
+    }
+
+    <!-- ? 舊版本 -->
+    <!-- <li *ngFor="let user of users">
+      <app-user [user]="user" (select)="onSelectUser($event)" />
+    </li> -->
+
+    <!-- <li>
+      <app-user [user]="users[0]" (select)="onSelectUser($event)" />
+    </li> -->
+
+    <!-- <li> -->
+    <!-- <app-user [user]="users[3]" (select)="onSelectUser($event)" /> -->
+    <!-- [id]="users[3].id"
+      [avatar]="users[3].avatar"
+      [name]="users[3].name" -->
+    <!-- </li> -->
+  </ul>
+
+  <!-- <app-tasks [name]="selectedUser.name" /> -->
+
+  @if(selectedUser){
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
+  }@else {
+  <p id="fallback">Select a user to see their task</p>
+  }
+
+  <!-- ? 舊版本 -->
+  <!-- <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name" />
+
+  <ng-template #fallback>
+    <p id="fallback">Select a user to see their task</p>
+  </ng-template> -->
+</main>
