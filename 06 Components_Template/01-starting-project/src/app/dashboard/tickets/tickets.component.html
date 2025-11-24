@@ -1,0 +1,18 @@
+<!-- >141 Template Loop -->
+<div>
+  <ul>
+    @for(ticket of tickets; track ticket.id) {
+    <li>
+      <!-- !141 數組訊息(Angular17) - {{ $first|$last|$even|$odd|$count }}  -->
+      <!-- -144 Cross Component Communication -->
+      <app-ticket [data]="ticket" (close)="onCloseTicket(ticket.id)" />
+    </li>
+    } @empty{
+    <p>No tickets available</p>
+    }
+  </ul>
+</div>
+
+<div id="new-ticket">
+  <app-new-ticket (add)="onAdd($event)" />
+</div>

@@ -1,0 +1,29 @@
+<!-- onSubmit(titleInput.value, textInput.value) -->
+<!-- ?146 Two-Way Binding -->
+<form (ngSubmit)="onSubmit()" #form>
+  <app-control label="Title" class="control">
+    <!-- #titleInput -->
+    <!-- ?146 Two-Way Binding [(ngModel)] -->
+    <input name="title" id="title" #input [(ngModel)]="enteredTitle" />
+  </app-control>
+
+  <app-control label="Request" class="control">
+    <!-- #textInput -->
+    <!-- ?146 Two-Way Binding [(ngModel)] -->
+    <textarea
+      name="request"
+      id="request"
+      rows="3"
+      #input
+      [(ngModel)]="enteredText"
+    ></textarea>
+  </app-control>
+
+  <p>
+    <button appButton #btn>
+      Submit
+      <!-- <span class="icon"> ⌲ </span> -->
+      <span ngProjectAs="icon"> ⌲ </span>
+    </button>
+  </p>
+</form>
