@@ -4,4 +4,10 @@
   <hr />
 
   <app-auth />
+
+  <!-- ?153 ngif 更改Dom 結構指令 -->
+  <!-- @if (isAdmin()) {
+  <p>Only admin see</p>
+  } -->
+  <p *ngIf="isAdmin()">Only admin see</p>
 </main>
