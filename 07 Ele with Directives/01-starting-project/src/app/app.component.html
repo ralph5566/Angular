@@ -1,5 +1,5 @@
 <main>
-  <app-learning-resources />
+  <app-learning-resources appLog />
 
   <hr />
 
@@ -9,5 +9,22 @@
   <!-- @if (isAdmin()) {
   <p>Only admin see</p>
   } -->
-  <p *ngIf="isAdmin()">Only admin see</p>
+  <!-- <p *ngIf="isAdmin()">Only admin see</p> -->
+
+  <!-- ?158 Another Directive -->
+  <!-- <p appAuth="admin">Only admin see</p> -->
+
+  <!-- >159 Custom Structural Directive -->
+  <!-- <ng-template appAuth="admin">
+    <p>Only admin see</p>
+  </ng-template> -->
+
+  <!-- -160 Structural Directive & Syntactic Sugar -->
+  <p *appAuth="'admin'" class="protected-content admin">Only admin see</p>
+  <p *appAuth="'user'" class="protected-content unauthenticated">
+    Regular users should see this!
+  </p>
+  <p *appAuth="'guest'" class="protected-content authenticated">
+    Guest users should see this!
+  </p>
 </main>
