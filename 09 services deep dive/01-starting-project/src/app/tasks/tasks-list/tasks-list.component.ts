@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 
 import { TaskItemComponent } from './task-item/task-item.component';
 import { TasksService } from '../tasks.service';
+import { TasksServiceToken } from '../../../main';
 
 @Component({
   selector: 'app-tasks-list',
@@ -12,7 +13,10 @@ import { TasksService } from '../tasks.service';
 })
 export class TasksListComponent {
   // >179 Alternative Dependency Injection Syntax
-  private tasksService = inject(TasksService);
+  // private tasksService = inject(TasksService);
+
+  // ?187 Using Custom DI Token & Providers
+  private tasksService = inject(TasksServiceToken);
 
   // selectedFilter = signal<string>('all');
   // tasks = [];

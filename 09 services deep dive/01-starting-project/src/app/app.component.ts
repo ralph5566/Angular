@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { TasksComponent } from './tasks/tasks.component';
+import { TasksService } from './tasks/tasks.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,7 @@ import { TasksComponent } from './tasks/tasks.component';
   templateUrl: './app.component.html',
   imports: [TasksComponent],
 })
-export class AppComponent {}
+export class AppComponent {
+  // !184 Understanding Ele Injector Behavior 衝突
+  // private tasksService=inject(TasksService)
+}

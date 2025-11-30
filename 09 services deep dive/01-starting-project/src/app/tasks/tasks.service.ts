@@ -1,6 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
 import { Task, TaskStatus } from './task.model';
+import { LoggingService } from '../logging.service';
 
 // ?176 Creating Service
 // !181 Multiple Injectors =>Error
@@ -9,6 +10,9 @@ import { Task, TaskStatus } from './task.model';
 // })
 export class TasksService {
   //   task = signal<Task[]>([]);
+
+  // >185 Injecting Service Into Service
+  private loggingService = inject(LoggingService);
 
   // >179 Alternative Dependency Injection Syntax
   private tasks = signal<Task[]>([]);
@@ -22,6 +26,9 @@ export class TasksService {
     };
 
     this.tasks.update((oldTasks) => [...oldTasks, newTask]);
+
+    // >185 Injecting Service Into Service
+    this.loggingService.log('ADDED TASK with title ' + taskData.title);
   }
 
   // ?180 Outsourcing & Reusing Logic with Service
@@ -31,5 +38,8 @@ export class TasksService {
         task.id === taskId ? { ...task, status: newStatus } : task
       )
     );
+
+    // >185 Injecting Service Into Service
+    this.loggingService.log('ADDED TASK STATUS TO' + newStatus);
   }
 }
