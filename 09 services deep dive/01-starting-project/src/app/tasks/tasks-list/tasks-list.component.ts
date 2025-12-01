@@ -3,6 +3,11 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { TaskItemComponent } from './task-item/task-item.component';
 import { TasksService } from '../tasks.service';
 import { TasksServiceToken } from '../../../main';
+import {
+  TASK_STATUS_OPTIONS,
+  TaskStatusOption,
+  taskStatusOptionsProvider,
+} from '../task.model';
 
 @Component({
   selector: 'app-tasks-list',
@@ -10,16 +15,23 @@ import { TasksServiceToken } from '../../../main';
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css',
   imports: [TaskItemComponent],
+
+  // ?190 Injecting Other Values(NOT Service)
+  // providers: [{ provide: TASK_STATUS_OPTIONS, useValue: TaskStatusOption }],
+  providers: [taskStatusOptionsProvider],
 })
 export class TasksListComponent {
   // >179 Alternative Dependency Injection Syntax
   // private tasksService = inject(TasksService);
 
-  // ?187 Using Custom DI Token & Providers
+  // ?188 Using Custom DI Token & Providers
   private tasksService = inject(TasksServiceToken);
 
   // selectedFilter = signal<string>('all');
   // tasks = [];
+
+  // ?190 Injecting Other Values(NOT Service)
+  taskStatusOptions = inject(TASK_STATUS_OPTIONS);
 
   // >179 Alternative Dependency Injection Syntax
   // tasks = this.tasksService.allTasks;
