@@ -1,6 +1,9 @@
 <ul>
   @for (message of messages(); track message) {
-    <li>{{ message }}</li>
+
+  <!-- >205 async Pipe  -->
+  <!-- @for (message of messages$ | async; track message) { -->
+  <li>{{ message }}</li>
   }
 </ul>
 

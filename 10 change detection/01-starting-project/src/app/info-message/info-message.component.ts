@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-info-message',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './info-message.component.html',
   styleUrl: './info-message.component.css',
+  // ?200 Understanding the OnPush Strategy
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoMessageComponent {
   get debugOutput() {
