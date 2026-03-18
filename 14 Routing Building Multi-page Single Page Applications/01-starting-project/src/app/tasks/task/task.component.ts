@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { type Task } from './task.model';
 import { CardComponent } from '../../shared/card/card.component';
 import { TasksService } from '../tasks.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -16,7 +17,18 @@ export class TaskComponent {
   task = input.required<Task>();
   private tasksService = inject(TasksService);
 
+  // ?300 Reloading Pages via the Angular Router & Configuring Programmatic Navigation
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+
   onComplete() {
     this.tasksService.removeTask(this.task().id);
+
+    // ?300 Reloading Pages via the Angular Router & Configuring Programmatic Navigation
+    this.router.navigate(['./'], {
+      relativeTo: this.activatedRoute,
+      onSameUrlNavigation: 'reload',
+      queryParamsHandling: 'preserve',
+    });
   }
 }
