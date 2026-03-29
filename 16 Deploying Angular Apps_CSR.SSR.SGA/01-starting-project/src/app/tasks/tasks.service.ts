@@ -2,9 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 import { type NewTaskData } from './task/task.model';
 
-// @I
-// njectable({ providedIn: 'root' })
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TasksService {
   private tasks = signal([
     {
@@ -58,7 +56,7 @@ export class TasksService {
 
   removeTask(id: string) {
     this.tasks.update((prevTasks) =>
-      prevTasks.filter((task) => task.id !== id),
+      prevTasks.filter((task) => task.id !== id)
     );
     this.saveTasks();
   }
